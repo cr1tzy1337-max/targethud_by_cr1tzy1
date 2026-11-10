@@ -96,6 +96,7 @@ public class TargetHudClient implements ClientModInitializer {
 
             // Внешний слой головы
             context.drawTexture(
+                    RenderLayer::getGuiTextured,
                     skin,
                     x + 8, y + 8,
                     40, 8,
