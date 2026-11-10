@@ -7,7 +7,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.client.network.AbstractClientPlayerEntity;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.hit.EntityHitResult;
@@ -80,10 +81,11 @@ public class TargetHudClient implements ClientModInitializer {
         );
 
         // Голова цели
-        if (entity instanceof PlayerEntity player) {
+        if (entity instanceof AbstractClientPlayerEntity player) {
             Identifier skin = player.getSkinTextures().texture();
 
             context.drawTexture(
+                    RenderLayer::getGuiTextured,
                     skin,
                     x + 8, y + 8,
                     8, 8,
